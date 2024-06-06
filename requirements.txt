@@ -1,0 +1,10 @@
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+
+azure-functions
+azure-cosmos
+sqlalchemy
+python-jose
+psycopg2
+azure_ad_verify_token
