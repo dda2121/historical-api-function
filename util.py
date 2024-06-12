@@ -4,16 +4,16 @@ from azure.cosmos import PartitionKey
 from azure_ad_verify_token import verify_jwt
 from jose import JWTError
 
-import config
+import os
 
-HOST = config.settings['host']
-MASTER_KEY = config.settings['master_key']
-DATABASE_ID = config.settings['database_id']
-CONTAINER_ID = config.settings['container_id']
+HOST = os.environ["ACCOUNT_HOST"]
+MASTER_KEY = os.environ["ACCOUNT_KEY"]
+DATABASE_ID = os.environ["COSMOS_DATABASE"]
+CONTAINER_ID = os.environ["COSMOS_CONTAINER"]
 
-AZURE_AD_APP_ID = config.settings['azure_ad_app_id']
-AZURE_AD_ISSUER = config.settings['azure_ad_issuer']
-AZURE_AD_JWKS_URI = config.settings['azure_ad_jwks_uri']
+AZURE_AD_APP_ID = os.environ["AZURE_AD_APP_ID"]
+AZURE_AD_ISSUER = os.environ["AZURE_AD_ISSUER"]
+AZURE_AD_JWKS_URI = os.environ["AZURE_AD_JWKS_URI"]
 
 def init_connection():
     client = cosmos_client.CosmosClient(HOST, {'masterKey': MASTER_KEY}, user_agent="CosmosDBPythonQuickstart",
@@ -61,6 +61,10 @@ def validate_jwt(token):
         return payload
     except JWTError:
         # raise HTTPException(
+        #     status_code=status.HTTP_403_FORBIDDEN, detail="Could not validate credentials"
+        # )
+        raise Exception()
+
         #     status_code=status.HTTP_403_FORBIDDEN, detail="Could not validate credentials"
         # )
         raise Exception()
