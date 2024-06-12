@@ -6,5 +6,9 @@ azure-functions
 azure-cosmos
 sqlalchemy
 python-jose
-psycopg2
+psycopg2-binary
 azure_ad_verify_token
+requests
+pydantic
+python-dotenv
+fpdf
